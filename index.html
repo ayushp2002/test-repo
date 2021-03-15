@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+	  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+	  <!-- Add Firebase products that you want to use -->
+	  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+	  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+
+		<title>Test</title>
+	</head>
+	<body>
+
+
+
+		<script>
+  		// Your web app's Firebase configuration
+  		var firebaseConfig = {
+    		apiKey: "AIzaSyCQhj8ok5S2l0lKvFqYY_3nKCQ_g7BjGZg",
+    		authDomain: "crypto-calculator-62e1c.firebaseapp.com",
+    		projectId: "crypto-calculator-62e1c",
+    		storageBucket: "crypto-calculator-62e1c.appspot.com",
+    		messagingSenderId: "470376617893",
+    		appId: "1:470376617893:web:f8cf2e4faf0015f766fa4c"
+  		};
+  		// Initialize Firebase
+  		firebase.initializeApp(firebaseConfig);
+
+			var provider = new firebase.auth.GoogleAuthProvider();
+			provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+			firebase.auth()
+  			.signInWithPopup(provider)
+  			.then((result) => {
+    			/** @type {firebase.auth.OAuthCredential} */
+    			var credential = result.credential;
+
+    			// This gives you a Google Access Token. You can use it to access the Google API.
+    			var token = credential.accessToken;
+    			// The signed-in user info.
+    			var user = result.user;
+    			// ...
+  			}).catch((error) => {
+    			// Handle Errors here.
+    		var errorCode = error.code;
+    		var errorMessage = error.message;
+    		// The email of the user's account used.
+    		var email = error.email;
+    		// The firebase.auth.AuthCredential type that was used.
+    		var credential = error.credential;
+  		});
+		</script>
+	</body>
+</html>
